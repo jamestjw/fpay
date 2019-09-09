@@ -1,0 +1,25 @@
+#webcamcontainer {
+    margin: 0px auto;
+    position: relative;
+    width: 500px;
+    height: 375px;
+    border: 10px #333 solid;
+    overflow: hidden
+}
+#videoElement {
+    position: absolute;
+    width: 500px;
+    height: 375px;
+    background-color: #666;
+}
+#title {
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+}
+#description {
+    text-align: center;
+}
+#output {
+    text-align: center;
+}

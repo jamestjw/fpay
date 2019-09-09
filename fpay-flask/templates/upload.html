@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        Register here to use our services!
+    </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+          <div class="col">
+      
+            <h1>Upload an image</h1>
+            <hr>
+      
+            <form action="/register" method="POST" enctype="multipart/form-data">
+
+              <div class="form-group">
+                <label for="name">Name: </label>
+                <input type="text" class="form-control" id="name" name="user_name" placeholder="John Doe">
+              </div>  
+
+              <div class="form-group">
+                  <label for="phone">Name: </label>
+                  <input type="text" class="form-control" id="phone" name="phone" placeholder="60123456789">
+              </div>  
+
+              <div class="form-group">
+                <div class="custom-file">
+                  <label for="image">Select image...</label>
+                  <input type="file" class="form-control-file" name="image" id="image">
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Upload</button>
+      
+            </form>
+      
+          </div>
+        </div>
+    </div>
+</body>

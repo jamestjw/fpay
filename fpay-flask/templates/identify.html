@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>FPay</title> 
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/identity.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+</head>
+ 
+<body>
+<div class='container'>
+    <div id="titlecontainer">
+        <h1 id="title">FPay Payment Site</h1>
+        <h3 id="description">Scan your face here in order to make payment</h3>
+    </div>
+    <div id="webcamcontainer">
+        <video autoplay="true" id="videoElement"></video>
+    </div>
+
+    <div id="outputcontainer">
+        <p id="output">Pending</p>
+    </div>
+    <div class='row justify-content-md-center'>
+        <div class='col-sm-2'>
+            <div class='btn btn-lg'>
+                <a href='#' onclick="onGrabFrameButtonClick();">
+                    Capture
+                </a>
+            </div>
+        </div>
+        <div class='col-sm-2'></div>
+            <div class='btn btn-lg'>
+                <a href='#' onclick="onTakePhotoButtonClick();">
+                    Verify Identity
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<canvas id="grabFrameCanvas" width="200" height="100"></canvas>
+
+<script type = "text/javascript" src = "{{ url_for('static', filename = 'js/identify.js') }}" ></script>
+</body>
+</html>
