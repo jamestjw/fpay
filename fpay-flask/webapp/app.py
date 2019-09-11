@@ -1,23 +1,43 @@
 import os
 from flask import Flask, render_template, redirect, url_for, request, jsonify
+from flask.ext.sqlalchemy import SQLAlchemy
 
 from PIL import Image
 import numpy as np
 import pandas as pd
 import os
-import matplotlib.pyplot as plt
 from scipy.spatial import KDTree
 
 from openface import *
+
+from models import db, User
 ###########  HYPERPARAMETERS  ##################################
 #Skip image with more than one face
 skipMulti = True
 size=96
 landmarkIndices = AlignDlib.OUTER_EYES_AND_NOSE
 
+###########  APP  ###############################################
+
 app = Flask(__name__)
-app.config.from_object(os.environ['APP_SETTINGS'])
+# app.config.from_object(os.environ['APP_SETTINGS'])
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+POSTGRES = {
+    'user': 'postgres',
+    'password': 526378,
+    'database': 'my_database',
+    'host': 'localhost',
+    'port': '5432',
+}
+
+app.config['DEBUG'] = True
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
+%(password)s@%(host)s:%(port)s/%(database)s' % POSTGRES
+db.init_app(app)
+
 ###########  MODEL PATH & INSTANTIATION  #######################
+
 fileDir = '/root/openface'
 modelDir = os.path.join(fileDir, 'models')
 dlibModelDir = os.path.join(modelDir, 'dlib')
@@ -45,7 +65,7 @@ except:
     data_df = pd.DataFrame([['dummy_name','dummy_phone']+list(np.random.randn(128))],columns=['name','phone']+[i for i in range(128)])
 @app.route('/')
 def index():
-    return "Hello World!"
+    return render_template('index.html')
 
 @app.route('/success')
 def success():
@@ -67,7 +87,7 @@ def register():
             data_df = data_df.append(to_append,sort=False)
             data_df.to_csv('data.csv',index=False)
             return redirect(url_for('success'))
-    return render_template("upload.html")
+    return render_template("register.html")
 
 
 @app.route('/identify', methods=["GET", "POST"])
@@ -98,4 +118,4 @@ def hello_name(name):
 
 
 if __name__ == '__main__':
-    app.run(port=9000, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT')))

@@ -1,0 +1,54 @@
+{% extends "public/templates/public_template.html" %}
+
+
+{% block title %}Identification{% endblock %}
+
+{% block style %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/identify.css') }}">
+{% endblock %}
+
+{% block main %}
+<div class='container'>
+    <div id="titlecontainer">
+        <h1 id="title">FPay Payment Site</h1>
+        <h3 id="description">Scan your face here in order to make payment</h3>
+    </div>
+    <div id="webcamcontainer">
+        <video autoplay="true" id="videoElement"></video>
+    </div>
+
+    <div id="outputcontainer">
+        <p id="output">Pending</p>
+    </div>
+    <div class='row justify-content-md-center'>
+        <!-- <div class='col-sm-2'>
+            <div class='btn btn-lg'>
+                <a href='#' onclick="onGrabFrameButtonClick();">
+                    Capture
+                </a>
+            </div>
+        </div> -->
+        <div class='col-sm-2 '>
+            <div class='btn btn-lg'>
+                <a href='#' onclick="stop();">
+                    Stop
+                </a>
+            </div>
+        </div>
+        <div class='col-sm-2'>
+            <div class='btn btn-lg'>
+                <a href='#' onclick="onTakePhotoButtonClick();">
+                    Verify Identity
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<canvas id="grabFrameCanvas" width="200" height="100"></canvas>
+
+{% endblock %}
+
+{% block script %}
+<script type = "text/javascript" src = "{{ url_for('static', filename = 'js/identify.js') }}" ></script>
+{% endblock %}
