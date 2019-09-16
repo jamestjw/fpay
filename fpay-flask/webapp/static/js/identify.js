@@ -22,6 +22,8 @@ function onGrabFrameButtonClick() {
 }
 
 function onTakePhotoButtonClick() {
+    $("#webcamcontainer").LoadingOverlay("show");
+    document.querySelector('#output').innerText = 'Identifying user...'
     imageCapture.takePhoto()
     .then(blob => {
         var form = new FormData();
@@ -32,11 +34,12 @@ function onTakePhotoButtonClick() {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                 response = JSON.parse(xhr.response)
                 name = response['name']
-            if (name ==undefined || name ==='undefined'){
+                if (name ==undefined || name ==='undefined'){
                     document.querySelector('#output').innerText = 'Unable to find match. Kindly register with us before trying again.'
                 } else {
-                    document.querySelector('#output').innerText = name
+                    document.querySelector('#output').innerText = 'Welcome back ' + name + '!'
                 }
+                $("#webcamcontainer").LoadingOverlay("hide")
             }
         }
         xhr.send(form)

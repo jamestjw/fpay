@@ -79,15 +79,16 @@ video.srcObject = null;
 
 $(function() // execute once the DOM has loaded
 {
-    var a = document.forms[0]["name"]
-    var b = document.forms[0]["phone"]
+  var a = document.forms[0]["name"]
+  var b = document.forms[0]["phone"]
   // wire up Add Item button click event
   $("form").submit(function(event)
   {
+    $.LoadingOverlay("show")
     event.preventDefault(); // cancel default behavior
-
     if (a.value == null || a.value == "" || b.value == null || b.value == "") {
         alert('Fill in all columns please!')
+        $.LoadingOverlay("hide");
     } else if (document.getElementById("image").files.length > 0) {
         $(this).unbind('submit').submit()
     } else if (typeof grabBlob !== 'undefined'){
@@ -99,10 +100,14 @@ $(function() // execute once the DOM has loaded
         xhr.open('POST', '/register');
         xhr.onreadystatechange = function() { // Call a function when the state changes.
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                $.LoadingOverlay("hide");
                 window.location.replace(xhr.responseURL);
             }                
         }
         xhr.send(form)        
+    } else {
+        $.LoadingOverlay("hide");
+        alert("You have to either upload a photo or freeze a webcam frame!")
     }
   });
 });
