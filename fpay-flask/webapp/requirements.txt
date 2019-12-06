@@ -89,7 +89,7 @@ python-editor==1.0.4
 pytz==2012rc0
 pyzmq==18.1.0
 qtconsole==4.5.5
-requests==2.2.1
+requests==2.20.0
 scandir==1.10.0
 scikit-learn==0.17.1
 scipy==0.16.1
