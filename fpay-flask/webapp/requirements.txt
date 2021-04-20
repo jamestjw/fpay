@@ -2,7 +2,7 @@ alembic==1.1.0
 appdirs==1.4.3
 asn1crypto==0.24.0
 attrs==18.1.0
-autobahn==0.10.4
+autobahn==20.12.3
 backports-abc==0.5
 backports.functools-lru-cache==1.5
 backports.shutil-get-terminal-size==1.0.0
