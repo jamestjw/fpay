@@ -31,7 +31,7 @@ functools32==3.2.3.post2
 gdbn==0.1
 gnumpy==0.2
 gunicorn==19.5.0
-html5lib==0.999
+html5lib==0.99999999
 idna==2.7
 ImageHash==1.0
 ipaddress==1.0.22
